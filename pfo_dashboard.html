@@ -3,161 +3,254 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PFO Dashboard — James | 2026-05-23</title>
+<title>💰 個人財務總管 — James</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;background:#F8F9FA;color:#1A1A2E;padding:20px}
-h1{font-size:28px;font-weight:700;margin-bottom:4px}h2{font-size:18px;font-weight:600;color:#444;margin:24px 0 12px}
-h3{font-size:14px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.5px}
-.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
-.meta{font-size:13px;color:#888}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:24px}
-.card{background:#FFFFFF;border-radius:16px;padding:20px;box-shadow:0 1px3px rgba(0,0,0,.08)}
-.big{font-size:36px;font-weight:700;color:#1A1A2E}
-.label{font-size:12px;color:#888;margin-top:4px}
-.tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:600}
-.tag-green{background:#E8F8EE;color:#1B8} .tag-red{background:#FEE2E2;color:#E00} .tag-orange{background:#FFF3E0;color:#E6511E} .tag-yellow{background:#FFF9E6;color:#B38F00}
-.row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #F0F0F0;font-size:14px}
-.row:last-child{border-bottom:none}
-.badge{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',PingFang TC,微軟正黑體,sans-serif;background:#F5F6FA;color:#1A1A2E;padding:16px}
+h1{font-size:26px;font-weight:700;margin-bottom:2px}
+h2{font-size:16px;font-weight:600;color:#333;margin:20px 0 10px;padding-bottom:6px;border-bottom:2px solid #E8E8ED}
+h3{font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #E0E0E8}
+.header-left .meta{font-size:12px;color:#999;margin-top:2px}
+.header-right{text-align:right}
+.header-right .rate{font-size:11px;color:#888}
+.header-right .price{font-size:11px;color:#AAA;margin-top:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:20px}
+.card{background:#FFFFFF;border-radius:14px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.card-title{font-size:11px;color:#999;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.big{font-size:32px;font-weight:700;color:#1A1A2E;line-height:1.1}
+.sub{font-size:11px;color:#888;margin-top:3px}
+.tag{display:inline-block;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:700}
+.tag-green{background:#E8F8EE;color:#1B8} .tag-red{background:#FEE2E2;color:#E00} .tag-orange{background:#FFF3E0;color:#E6511E} .tag-yellow{background:#FFF9E6;color:#B38F00} .tag-dark{background:#E5E5EA;color:#666}
+.warn{background:#FFF3F0;border:1px solid #FFDDD5;border-radius:10px;padding:12px 16px;font-size:13px;color:#C0392B;margin-bottom:16px}
+.info-box{background:#EEF5FF;border:1px solid #D5E8FF;border-radius:10px;padding:12px 16px;font-size:13px;color:#1A4D99;margin-bottom:16px}
+.section-title{font-size:14px;font-weight:700;color:#333;margin:20px 0 10px;display:flex;align-items:center;gap:6px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+@media(max-width:600px){.grid{grid-template-columns:1fr 1fr}.two-col{grid-template-columns:1fr}.big{font-size:26px}}
 table{width:100%;border-collapse:collapse;font-size:13px}
-th{text-align:left;color:#888;font-weight:500;padding:6px 0}td{padding:8px 0;border-bottom:1px solid #F5F5F5}
-.bar-wrap{background:#E5E5EA;border-radius:4px;height:6px;margin-top:4px}
-.bar{height:6px;border-radius:4px;background:#007AFF}
-.alert{background:#FFF3CD;border:1px solid #FFE69C;border-radius:8px;padding:12px 16px;font-size:13px;margin-bottom:16px;color:#856404}
-.warn{background:#FDE8E8;border:1px solid #F5C6CB;border-radius:8px;padding:12px 16px;font-size:13px;margin-bottom:16px;color:#721C24}
-.info{background:#E8F4FD;border:1px solid #BBDEFB;border-radius:8px;padding:12px 16px;font-size:13px;margin-bottom:16px;color:#0D47A1}
-.footer{margin-top:32px;text-align:center;font-size:12px;color:#AAA}
-@media(max-width:600px){.grid{grid-template-columns:1fr}}
+th{text-align:left;color:#999;font-weight:500;padding:5px 0;font-size:11px}
+td{padding:9px 0;border-bottom:1px solid #F2F2F5;font-size:13px}
+td:last-child{text-align:right;font-weight:600}
+tr:last-child td{border-bottom:none}
+.total-row td{border-top:2px solid #E0E0E8;font-weight:700;font-size:14px;padding-top:10px}
+.alloc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:16px}
+.alloc-card{background:#FFF;border-radius:12px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.alloc-name{font-size:12px;color:#666;font-weight:600;margin-bottom:6px}
+.alloc-pct{font-size:22px;font-weight:700}
+.alloc-target{font-size:11px;color:#999;margin-top:2px}
+.alloc-bar{height:5px;background:#E8E8ED;border-radius:3px;margin-top:6px}
+.alloc-fill{height:5px;border-radius:3px}
+.alloc-dev{font-size:11px;margin-top:4px;font-weight:600}
+.dev-ok{color:#1B8} .dev-warn{color:#E00} .dev-note{color:#E6511E}
+.footer{margin-top:28px;text-align:center;font-size:11px;color:#BBB;line-height:1.8}
+.floating-update{position:fixed;bottom:20px;right:20px;background:#007AFF;color:#FFF;border:none;border-radius:50%;width:52px;height:52px;font-size:22px;box-shadow:0 4px 12px rgba(0,122,255,.4);cursor:pointer;display:none}
 </style>
 </head>
 <body>
+
+<!-- 頂部標題列 -->
 <div class="header">
-<div><h1>💼 Personal Finance Office</h1><div class="meta">James · Updated 2026-05-23 20:16</div></div>
-<div style="text-align:right">
-<div style="font-size:11px;color:#AAA">USD/TWD 31.48 · RMB/TWD 4.64</div>
-<div style="font-size:11px;color:#AAA">BTC ฿2,350,001 (-3.60%) · ADA 7.48 (-5.90%)</div>
+<div class="header-left">
+<h1>💰 個人財務總管</h1>
+<div class="meta">James · 更新於 2026-05-23</div>
+</div>
+<div class="header-right">
+<div class="rate">💱 美元/台幣 31.48 · 人民幣/台幣 4.64</div>
+<div class="price">₿ BTC ฿2,350,001 (-3.60%) · ₐ ADA 7.48 TWD (-5.90%)</div>
 </div>
 </div>
 
-<!-- Net Worth -->
-<div class="grid">
-<div class="card"><div class="big">NT$ 8,636,723</div><div class="label">🏦 Net Worth 淨資產</div></div>
-<div class="card"><div class="big" style="color:#34C759">13.8%</div><div class="label">🎯 FI Progress (FI Target: NT$ 62,500,000)</div></div>
-<div class="card"><div class="big" style="font-size:28px">9 yrs</div><div class="label">⏳ Years to Retirement 2035</div></div>
-<div class="card"><div class="big" style="font-size:28px">24.6%</div><div class="label">📈 Required CAGR</div></div>
-</div>
-
-<!-- Risk -->
-<div class="grid">
-<div class="card"><span class="tag tag-red">31.1%</span><div class="label" style="margin-top:8px">Crypto Exposure 加密貨幣</div></div>
-<div class="card"><span class="tag tag-orange">56.4%</span><div class="label" style="margin-top:8px">Debt Ratio 負債比</div></div>
-<div class="card"><span class="tag tag-yellow">37.8%</span><div class="label" style="margin-top:8px">Liquidity Ratio 流動比</div></div>
-<div class="card"><span class="tag 🔴">🔴 Critical</span><div class="label" style="margin-top:8px">Retirement Risk 退休風險</div></div>
-</div>
-<div class="warn">⚠️ <b>Rebalance Alert:</b> 資產配置偏離目標 &gt;10% — cash -12.8%, tw_equity -15.8%, us_equity -20.0%, btc +10.5%</div>
-<h2>📊 Balance Sheet 資產負債表</h2>
+<!-- 四大數值卡片 -->
 <div class="grid">
 <div class="card">
-<h3>Assets 資產</h3>
+<div class="card-title">🏦 淨資產</div>
+<div class="big">8,636,723</div>
+<div class="sub">NT$ 台幣</div>
+</div>
+<div class="card">
+<div class="card-title">🎯 財務自由進度</div>
+<div class="big" style="color:#34C759">13.8%</div>
+<div class="sub">目標 NT$ 62,500,000</div>
+</div>
+<div class="card">
+<div class="card-title">⏳ 距離退休</div>
+<div class="big">9 年</div>
+<div class="sub">目標 2035 年</div>
+</div>
+<div class="card">
+<div class="card-title">📈 必要年化報酬</div>
+<div class="big" style="color:#E00">24.6%</div>
+<div class="sub">需達成 年複利</div>
+</div>
+</div>
+
+<!-- 風險警示區 -->
+<div class="warn">⚠️ <b>嚴重警示：</b>負債比 56.4% 過高、加密貨幣占比 31.1% 超標（目標 &lt;25%）、流動比 37.8% 不足。建議加速還款、減持 BTC。</div>
+<div class="warn">⚠️ <b>資產配置偏離 >10%：</b>現金 -12.8%、台股 -15.8%、美股 -20.0%（完全空白）、BTC +10.5%（超標）。</div>
+
+<!-- 資產負債表 -->
+<div class="section-title">📊 資產負債表</div>
+<div class="two-col">
+<div class="card">
+<div class="card-title">💼 總資產</div>
 <table>
-<tr><td>💵 Cash 現金</td><td style="text-align:right;font-weight:600">NT$ 425,381</td></tr>
-<tr><td>📈 Taiwan Equity 台股</td><td style="text-align:right;font-weight:600">NT$ 3,803,450</td></tr>
-<tr><td>🌐 US Equity 美股</td><td style="text-align:right;font-weight:600">NT$ 0</td></tr>
-<tr><td>₿ BTC</td><td style="text-align:right;font-weight:600">NT$ 5,052,502</td></tr>
-<tr><td>ₐ ADA</td><td style="text-align:right;font-weight:600">NT$ 1,122,000</td></tr>
-<tr><td>🔒 Restricted (Delta Trust)</td><td style="text-align:right;font-weight:600">NT$ 9,427,500</td></tr>
-<tr style="border-top:2px solid #E5E5EA"><td><b>Total Assets 總資產</b></td><td style="text-align:right;font-weight:700;font-size:16px">NT$ 19,830,833</td></tr>
+<tr><td>💵 現金</td><td>425,381</td></tr>
+<tr><td>📈 台股</td><td>3,803,450</td></tr>
+<tr><td>🌐 美股</td><td>0</td></tr>
+<tr><td>₿ BTC</td><td>5,052,502</td></tr>
+<tr><td>ₐ ADA</td><td>1,122,000</td></tr>
+<tr><td>🔒 限制性資產（台達員工信托）</td><td>9,427,500</td></tr>
+<tr class="total-row"><td>合計總資產</td><td>19,830,833</td></tr>
 </table>
 </div>
 <div class="card">
-<h3>Liabilities 負債</h3>
+<div class="card-title">🏛️ 總負債</div>
 <table>
-<tr><td>🏠 Mortgage 房貸</td><td style="text-align:right;font-weight:600">NT$ 7,711,114</td></tr>
-<tr><td>💳 Personal Loan 信貸</td><td style="text-align:right;font-weight:600">NT$ 3,482,996 (3.0% APR)</td></tr>
-<tr style="border-top:2px solid #E5E5EA"><td><b>Total Liabilities 總負債</b></td><td style="text-align:right;font-weight:700;font-size:16px">NT$ 11,194,110</td></tr>
+<tr><td>🏠 房貸</td><td>7,711,114</td></tr>
+<tr><td>💳 信貸（利率 3%）</td><td>3,482,996</td></tr>
+<tr class="total-row"><td>合計總負債</td><td>11,194,110</td></tr>
 </table>
 </div>
 </div>
 
-<h2>📋 Income Statement 收益表</h2>
-<div class="grid">
+<!-- 淨資產結論 -->
+<div class="card" style="background:#E8F8EE;border-left:4px solid #34C759;margin-bottom:16px">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<div><div style="font-size:13px;color:#555;font-weight:600">淨資產 Net Worth</div></div>
+<div style="font-size:24px;font-weight:700;color:#1B8">NT$ 8,636,723</div>
+</div>
+</div>
+
+<!-- 收益表 -->
+<div class="section-title">📋 收益表</div>
+<div class="two-col">
 <div class="card">
+<div class="card-title">💰 收入</div>
 <table>
-<tr><td>💰 Salary 薪資</td><td style="text-align:right">NT$ 10,000,000</td></tr>
-<tr><td>🌏 China Income 中國收入</td><td style="text-align:right">NT$ 4,640,000</td></tr>
-<tr style="border-top:2px solid #E5E5EA"><td><b>Annual Income 年收入</b></td><td style="text-align:right;font-weight:700">NT$ 14,640,000</td></tr>
+<tr><td>💼 薪資年收入</td><td>10,000,000</td></tr>
+<tr><td>🌏 中國收入（人民幣 100萬）</td><td>4,640,000</td></tr>
+<tr class="total-row"><td>年度總收入</td><td>14,640,000</td></tr>
 </table>
 </div>
 <div class="card">
+<div class="card-title">🏠 支出</div>
 <table>
-<tr><td>🏠 Annual Expense 年支出</td><td style="text-align:right;color:#FF3B30">NT$ 4,000,000</td></tr>
-<tr style="border-top:2px solid #E5E5EA"><td><b>Free Cash Flow 自由現金流</b></td><td style="text-align:right;font-weight:700;color:#34C759">NT$ 10,640,000</td></tr>
+<tr><td>👨‍👩‍👧 家庭年支出</td><td style="color:#E00">4,000,000</td></tr>
+<tr class="total-row"><td>自由現金流 FCF</td><td style="color:#1B8">10,640,000</td></tr>
 </table>
 </div>
 </div>
 
-<h2>📈 Asset Allocation 資產配置</h2>
-<div class="grid">
-<div class="card">
-<h3>💵 Cash</h3>
-<div style="font-size:20px;font-weight:700">2.1% <span style="font-size:13px;color:#888">→ target 15.0%</span></div>
-<div class="bar-wrap"><div class="bar" style="width:2.15%;background:#FF3B30"></div></div>
-<div style="font-size:12px;color:#E00;margin-top:4px">-12.8% deviation ⚠️ REBALANCE</div>
-</div><div class="card">
-<h3>📈 Taiwan Equity</h3>
-<div style="font-size:20px;font-weight:700">19.2% <span style="font-size:13px;color:#888">→ target 35.0%</span></div>
-<div class="bar-wrap"><div class="bar" style="width:19.18%;background:#FF3B30"></div></div>
-<div style="font-size:12px;color:#E00;margin-top:4px">-15.8% deviation ⚠️ REBALANCE</div>
-</div><div class="card">
-<h3>🌐 US Equity</h3>
-<div style="font-size:20px;font-weight:700">0.0% <span style="font-size:13px;color:#888">→ target 20.0%</span></div>
-<div class="bar-wrap"><div class="bar" style="width:0.0%;background:#FF3B30"></div></div>
-<div style="font-size:12px;color:#E00;margin-top:4px">-20.0% deviation ⚠️ REBALANCE</div>
-</div><div class="card">
-<h3>₿ BTC</h3>
-<div style="font-size:20px;font-weight:700">25.5% <span style="font-size:13px;color:#888">→ target 15.0%</span></div>
-<div class="bar-wrap"><div class="bar" style="width:25.480000000000004%;background:#FF3B30"></div></div>
-<div style="font-size:12px;color:#E00;margin-top:4px">10.5% deviation ⚠️ REBALANCE</div>
-</div><div class="card">
-<h3>ₐ ADA/Altcoin</h3>
-<div style="font-size:20px;font-weight:700">5.7% <span style="font-size:13px;color:#888">→ target 5.0%</span></div>
-<div class="bar-wrap"><div class="bar" style="width:5.66%;background:#34C759"></div></div>
-<div style="font-size:12px;color:#888;margin-top:4px">0.7% deviation ✓ OK</div>
+<!-- 資產配置 -->
+<div class="section-title">📈 目標資產配置 vs 實際</div>
+<div class="alloc-grid">
+<div class="alloc-card">
+<div class="alloc-name">💵 現金</div>
+<div class="alloc-pct">2.1%</div>
+<div class="alloc-target">目標 15%</div>
+<div class="alloc-bar"><div class="alloc-fill" style="width:14%;background:#FF3B30"></div></div>
+<div class="alloc-dev dev-warn">-12.8% ⚠️ 需增持</div>
+</div>
+<div class="alloc-card">
+<div class="alloc-name">📈 台股</div>
+<div class="alloc-pct">19.2%</div>
+<div class="alloc-target">目標 35%</div>
+<div class="alloc-bar"><div class="alloc-fill" style="width:55%;background:#FF3B30"></div></div>
+<div class="alloc-dev dev-warn">-15.8% ⚠️ 需增持</div>
+</div>
+<div class="alloc-card">
+<div class="alloc-name">🌐 美股</div>
+<div class="alloc-pct">0.0%</div>
+<div class="alloc-target">目標 20%</div>
+<div class="alloc-bar"><div class="alloc-fill" style="width:0%;background:#FF3B30"></div></div>
+<div class="alloc-dev dev-warn">-20.0% ⚠️ 完全空白</div>
+</div>
+<div class="alloc-card">
+<div class="alloc-name">₿ BTC</div>
+<div class="alloc-pct">25.5%</div>
+<div class="alloc-target">目標 15%</div>
+<div class="alloc-bar"><div class="alloc-fill" style="width:100%;background:#FF3B30"></div></div>
+<div class="alloc-dev dev-warn">+10.5% ⚠️ 需減持</div>
+</div>
+<div class="alloc-card">
+<div class="alloc-name">ₐ ADA / 另類幣</div>
+<div class="alloc-pct">5.7%</div>
+<div class="alloc-target">目標 5%</div>
+<div class="alloc-bar"><div class="alloc-fill" style="width:100%;background:#34C759"></div></div>
+<div class="alloc-dev dev-ok">+0.7% ✓ 正常</div>
 </div>
 </div>
 
-<h2>🛡️ Risk Dashboard</h2>
+<!-- 風險儀表板 -->
+<div class="section-title">🛡️ 風險儀表板</div>
 <div class="grid">
-<div class="card"><div style="font-size:13px;color:#888">Crypto Exposure</div><div class="big" style="color:#E00">31.1%</div><div class="label">Target &lt;25%</div></div>
-<div class="card"><div style="font-size:13px;color:#888">Concentration Risk</div><div class="big" style="color:#34C759">25.5%</div><div class="label">Largest single holding</div></div>
-<div class="card"><div style="font-size:13px;color:#888">Debt/Asset Ratio</div><div class="big" style="color:#E00">56.4%</div><div class="label">Target &lt;35%</div></div>
-<div class="card"><div style="font-size:13px;color:#888">Liquidity Ratio</div><div class="big">37.8%</div><div class="label">Target &gt;100%</div></div>
+<div class="card"><div class="card-title">加密貨幣占比</div><div class="big" style="color:#E00">31.1%</div><div class="sub">目標 &lt;25%</div></div>
+<div class="card"><div class="card-title">最大集中度（BTC）</div><div class="big" style="color:#E00">25.5%</div><div class="sub">單一持有上限 40%</div></div>
+<div class="card"><div class="card-title">負債資產比</div><div class="big" style="color:#E00">56.4%</div><div class="sub">目標 &lt;35%</div></div>
+<div class="card"><div class="card-title">流動比率</div><div class="big">37.8%</div><div class="sub">目標 &gt;100%</div></div>
 </div>
 
-<h2>📊 Net Worth Trend (1 months)</h2>
-<div class="grid">
-<div class="card"><div style="font-size:13px;color:#888">202605</div><div class="big" style="font-size:20px">NT$ 8,636,723</div></div>
+<!-- 退休風險 -->
+<div class="card" style="border-left:4px solid #FF3B30;margin-bottom:16px">
+<div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+<div><div class="card-title">退休風險等级</div><div class="big" style="color:#E00;font-size:20px">🔴 危急</div></div>
+<div style="border-left:1px solid #EEE;padding-left:16px">
+<div style="font-size:12px;color:#666">当前进度 13.8% · 距離目標還需 <b>NT$ 53.86M</b></div>
+<div style="font-size:12px;color:#666;margin-top:4px">每年需儲蓄 + 投資產生 <b style="color:#E00">24.6% 年化報酬</b>（難度極高）</div>
+<div style="font-size:12px;color:#888;margin-top:4px">建議：降低生活費至 NT$250萬、提高收入、盡早清償高息負債</div>
+</div>
+</div>
 </div>
 
-<h2>📋 Stock Holdings 台股明細</h2>
+<!-- 台股明細 -->
+<div class="section-title">📋 台股持有明細</div>
 <div class="card">
 <table>
-<tr><th>Ticker</th><th>Shares</th><th>Price</th><th>Market Value</th></tr>
-<tr><td><b>009816</b> KGI Taiwan TOP50+</td><td>120,000</td><td>NT$14.19</td><td style="font-weight:600">NT$ 1,702,800</td></tr><tr><td><b>2308</b> Delta Electronics</td><td>100</td><td>NT$2,095.00</td><td style="font-weight:600">NT$ 209,500</td></tr><tr><td><b>2330</b> TSMC</td><td>30</td><td>NT$2,255.00</td><td style="font-weight:600">NT$ 67,650</td></tr><tr><td><b>2408</b> Nanya Technology</td><td>5,000</td><td>NT$310.50</td><td style="font-weight:600">NT$ 1,552,500</td></tr><tr><td><b>2486</b> Ichia</td><td>1,000</td><td>NT$271.00</td><td style="font-weight:600">NT$ 271,000</td></tr><tr style="border-top:2px solid #E5E5EA"><td colspan=3><b>Total Taiwan Equity</b></td><td style="font-weight:700">NT$ 3,803,450</td></tr>
+<tr><th>代號</th><th>名稱</th><th>股數</th><th>股價</th><th>市值</th></tr>
+<tr><td><b>009816</b></td><td>元大台灣50+</td><td>120,000</td><td>14.19</td><td>1,702,800</td></tr>
+<tr><td><b>2308</b></td><td>台達電</td><td>100</td><td>2,095</td><td>209,500</td></tr>
+<tr><td><b>2330</b></td><td>台積電</td><td>30</td><td>2,255</td><td>67,650</td></tr>
+<tr><td><b>2408</b></td><td>南亞科</td><td>5,000</td><td>310.5</td><td>1,552,500</td></tr>
+<tr><td><b>2486</b></td><td>華新科</td><td>1,000</td><td>271</td><td>271,000</td></tr>
+<tr class="total-row"><td colspan="4">台股合計</td><td>3,803,450</td></tr>
 </table>
 </div>
 
-<h2>🔒 Restricted Assets</h2>
-<div class="info">
-<b>Delta Employee Trust (2308)</b> — 4,500 shares
-<br>Liquidity: <b>Restricted</b> · Annual vesting: 2,500 shares/year
-<br>Current value: NT$ 9,427,500 (included in net worth but cannot be liquidated freely)
+<!-- 限制性資產 -->
+<div class="section-title">🔒 限制性資產</div>
+<div class="info-box">
+<b>台達電員工信托（2308）</b><br>
+・持有股數：4,500 股（限制買賣）<br>
+・每年新增：2,500 股（vesting）<br>
+・現值：NT$ 9,427,500<br>
+・說明：已計入淨資產，但無法自由變現
 </div>
 
+<!-- 淨資產歷史趨勢 -->
+<div class="section-title">📊 淨資產趨勢（近月）</div>
+<div class="grid">
+<div class="card"><div class="card-title">2026年05月</div><div class="big" style="font-size:22px">8,636,723</div></div>
+</div>
+
+<!-- 再平衡建議 -->
+<div class="section-title">⚙️ 再平衡建議</div>
+<div class="card" style="background:#FFF9E6;border-left:4px solid #FF9500">
+<div style="font-size:13px;color:#333">
+<b>優先順序：</b><br>
+<b>1.</b> 提高現金儲備至 NT$2,970,125（目前 425,381，缺口 254萬）<br>
+<b>2.</b> 清償利率 3% 信貸 NT$3,482,996（釋放每月現金流）<br>
+<b>3.</b> 減持 BTC 2.15顆 至約 0.86顆（從 25.5%降至 15%）<br>
+<b>4.</b> 考慮開始布局美股（目标 20% = 約 NT$3,966,166）<br>
+<b>5.</b> 持續增持台股（目標 35% = 約 NT$6,940,791）
+</div>
+</div>
+
+<!-- 底部 -->
 <div class="footer">
-PFO Dashboard v1.0 · Data: 2025-05-13T01:00:00+08:00 · BTC 2,350,001 TWD · ADA 7.48 TWD
-<br>Generated by Jarvis CFO Agent
+PFO Dashboard v1.0 · 數據更新：2026-05-23<br>
+₿ BTC 2,350,001 TWD · ₐ ADA 7.48 TWD<br>
+由 Jarvis CFO Agent 自動生成
 </div>
+
 </body>
 </html>
